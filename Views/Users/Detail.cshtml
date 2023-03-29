@@ -1,0 +1,90 @@
+﻿@model List<UserVM>
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+
+                    <h4 class="sub-title"> Qan qrupu haqqında məlumat</h4>
+                </div>
+                @foreach (UserVM item in Model)
+                {
+
+                    <div class="form-group has-success row">
+
+                        <div class="col-sm-12">
+                            <label class="text-center">Istifadəçinin adı</label>
+                            <input asp-for="@item.Name" class="form-control form-control-success" placeholder="Qan qrupunun adı">
+
+
+                            <span asp-validation-for="@item.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group has-success row">
+
+                        <div class="col-sm-12">
+                            <label class="text-center">Istifadəçinin soyadı</label>
+                            <input asp-for="@item.Surname" type="text" class="form-control form-control-success" placeholder="Qan qrupunun miqdarı litrlə">
+
+
+                            <span asp-validation-for="@item.Surname" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group has-success row">
+
+                        <div class="col-sm-12">
+                            <label class="text-center">Istifadəçinin adı</label>
+                            <input asp-for="@item.Role" class="form-control form-control-success" placeholder="Qan qrupunun adı">
+
+
+                            <span asp-validation-for="@item.Role" class="text-danger"></span>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label for="exampleFormControlSelect1">Rolu dəyiş</label>
+                        <select class="form-control" name="newRole">
+                            <option></option>
+                            @foreach (IdentityRole role in ViewBag.Roles)
+                            {
+
+
+                              
+                                   
+                            
+                                    <option value="@role.Name">@role.Pass</option>
+                                
+                            }
+                        </select>
+                    </div>*@
+                    <div class="form-group has-success row">
+
+                        <div class="col-sm-12">
+                            <label class="text-center">Istifadəçinin adı</label>
+                            <input asp-for="@item.Email" class="form-control form-control-success" placeholder="Qan qrupunun adı">
+
+
+                            <span asp-validation-for="@item.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+
+
+
+
+            </div>
+            
+        </div>
+
+                
+        <div class="text-center">
+
+            <a asp-controller="BloodBank" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+

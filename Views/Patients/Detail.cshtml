@@ -1,0 +1,153 @@
+﻿@model Patients
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title">  Pasientin məlumatları</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <img src="~/ass/Image/@Model.Image" style="width:400px;height:500px;border-radius:10px" />
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group has-success row">
+                            <div class="col-sm-12">
+                                <label class="col-form-label" asp-for="@Model.Name">Pasientin adı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Name" class="form-control form-control-success" placeholder="Ad">
+
+
+                                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-12">
+                                <label class="col-form-label" asp-for="@Model.Surname">Pasientin soyadı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Surname" class="form-control form-control-success" placeholder="Soyad">
+
+
+                                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-12">
+                                <label class="col-form-label" asp-for="@Model.Age">Pasientin Yaşı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Age" class="form-control form-control-success" placeholder="Yaşı">
+
+
+                                <span asp-validation-for="@Model.Age" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-12">
+                                <label class="col-form-label" asp-for="@Model.ApplyDate">Qeydiyyat tarixi</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input contenteditable="inherit" asp-for="@Model.ApplyDate" type="datetime" class="form-control form-control-success" placeholder="Qeydiyyat tarixi">
+
+
+                                <span asp-validation-for="@Model.ApplyDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-12">
+                                <label class="col-form-label" asp-for="@Model.Disease">Pasientin xəstəliyi</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Disease" class="form-control form-control-success" placeholder="Xəstəliyi">
+
+
+                                <span asp-validation-for="@Model.Disease" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-12">
+                                <label class="col-form-label" asp-for="@Model.Email">Pasientin mail ünvanı</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <input asp-for="@Model.Email" type="email" class="form-control form-control-success">
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="col-form-label">Departament</label>
+                        </div>
+                        <select name="departmentId" class="form-control" id="departmentId">
+
+                            @foreach (Department item in ViewBag.Department)
+                            {
+                                if (Model.Reports.Any(x => x.Doctors.DepartmentId == item.Id))
+                                {
+                                    <option hidden value="@item.Id">@item.DepartmentName</option>
+                                }
+                      }
+
+                        </select>
+
+                        <div class="col-sm-6">
+                            <label class="col-form-label">Hekim</label>
+                        </div>
+                        <select name="DoctorId" class="form-control" id="DoctorId">
+                            @foreach (Reports items in Model.Reports)
+                            {
+                                <option hidden value="@items.DoctorId">@items.Doctors.Name @items.Doctors.Surname @items.Doctors.Work</option>
+                            }
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="text-center">
+
+            <a asp-controller="Patients" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+    <script>
+        $(document).on('change', '#departmentId', function () {
+
+            $.ajax({
+                url: "/Patients/LoadDoctorCategories/",
+                type: "GET",
+                data: {
+                    "mainId": $("#departmentId").val()
+                },
+                success: function (response) {
+                    $("#DoctorId").empty()
+                    $("#DoctorId").append(response)
+                }
+
+            });
+
+
+        })
+    </script>
+}

@@ -1,0 +1,28 @@
+﻿@model HospitalSlider
+@{
+    ViewData["Title"] = "Detail";
+}
+<h1>Başlıq Şəkili</h1>
+<div class="card-border-danger">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <img src="~/assets/Image/@Model.Image" style="width:300px;height:200px;object-fit:cover;border-radius:10%" />
+        </div>
+      
+        <div class="form-group">
+            <label asp-for="@Model.Title"></label>
+            <input asp-for="@Model.Title" class="form-control">
+            <span asp-validation-for="@Model.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description"></label>
+            <input  asp-for="@Model.Description" class="form-control">
+            <span asp-validation-for="@Model.Description"  class="text-danger"></span>
+        </div>
+        <a asp-controller="HospitalSlider" asp-action="Index" class="btn btn-success"><i class="ti-back-left"></i>Geri qayıt</a>
+
+
+
+    </form>
+
+</div>

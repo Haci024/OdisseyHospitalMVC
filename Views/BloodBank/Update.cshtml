@@ -1,0 +1,76 @@
+﻿@model BloodBank
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title"> Qan qrupu Məlumatlarını yenilə</h4>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.BloodGroup" class="form-control form-control-success" placeholder="Qan qrupunun adı">
+
+
+                        <span asp-validation-for="@Model.BloodGroup" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.BloodQuantity" type="number" class="form-control form-control-success" placeholder="Qan qrupunun miqdarı litrlə">
+
+
+                        <span asp-validation-for="@Model.BloodQuantity" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <textarea asp-for="@Model.About" class="form-control form-control-success" placeholder="Qan qrupu haqqında "></textarea>
+
+
+                        <span asp-validation-for="@Model.About" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group has-success row">
+                    <div class="col-sm-12">
+                        <label class="col-form-label" asp-for="@Model.Photo">Qan qrupunun şəkili</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input asp-for="@Model.Photo" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i>Məlumatları yenilə</button>
+            <a asp-controller="BloodBank" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+   <script  src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+ <script>
+            ClassicEditor
+            .create(document.querySelector('#About'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}

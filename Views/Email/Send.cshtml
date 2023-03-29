@@ -1,0 +1,88 @@
+﻿@model MailMessage
+
+@{
+    ViewData["Title"] = "Send";
+}
+
+<h1 class="text-center">Mesaj göndər</h1>
+<div class="container">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card">
+            <div class="card-header">
+
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <li><i class="fa fa-chevron-left"></i></li>
+                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                        <li><i class="fa fa-minus minimize-card"></i></li>
+                        <li><a asp-controller="Email" asp-action="Send"><i class="fa fa-refresh reload-card"></i></a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title"> Pasientlərə mesaj göndər</h4>
+                </div>
+                <div class="form-group has-success row">
+                 
+
+                        <div class="col-sm-12">
+                            <label asp-for="@Model.To">Pasientin elektron ünvanı</label>
+
+                            <input asp-for="@Model.To"   class="form-control form-control-success" placeholder="Mesajın kimə olduğunu bildirmək üçün gmail daxil edin!">
+
+
+                            <span asp-validation-for="@Model.To" class="text-danger"></span>
+                        </div>
+
+               
+                </div>
+                <div class="form-group has-success row">
+                    <label asp-for="@Model.Subject">Mesajın başlığı</label>
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Subject" class="form-control form-control-success" placeholder="Mesajın başlığı">
+
+
+                        <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+                        <label asp-for="@Model.Body">Mesajın mətini</label>
+                        <textarea asp-for="@Model.Body" class="form-control form-control-success" placeholder="Mesajın məzmunu"></textarea>
+
+
+                        <span asp-validation-for="@Model.Body" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                @if (ViewBag.Mgs != null)
+                {
+                    <h4 style="color:greenyellow">@ViewBag.Mgs</h4>
+                }
+                else
+                {
+                    <h4 style="color: greenyellow">@ViewBag.Mgs</h4>
+                }
+            </div>
+
+        </div>
+        <div class="text-center">
+
+            <div class="form-group">
+                <button type="submit"  class="btn btn-primary btn-outline-primary btn-block"><i class="ti-email"></i>Göndər</button>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}
+

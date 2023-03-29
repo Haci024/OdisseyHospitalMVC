@@ -1,0 +1,48 @@
+﻿  @model List<Doctor>
+
+@foreach (Doctor item in Model)
+{
+
+    <tr class="table-active">
+
+        <td>@item.Name @item.Surname</td>
+
+        <td><img src="~/assets/Image/@item.DoctorImage" style="width:80px;height:80px;border-radius:50%" /></td>
+
+        <td><h3>@item.Department.DepartmentName</h3></td>
+        <td>@item.Age</td>
+        <td>
+
+            @if (item.IsDeactive)
+            {
+                <span class="text-danger">Deaktiv</span>
+            }
+            else
+            {
+                <span class="text-success">Aktiv</span>
+            }
+        </td>
+        <td>
+            @if (item.IsDeactive)
+            {
+                <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-secondary">Activated</a>
+            }
+            else
+            {
+                <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-danger"><i class="ti-trash"></i>Sil</a>
+            }
+            <a asp-controller="Doctor" asp-action="Update" asp-route-id="@item.Id" class="btn btn-success"><i class="ti-reload"></i>Yenilə</a>
+            <a asp-controller="Doctor" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning"><i class="ti-agenda"></i>Detallar</a>
+
+        </td>
+
+    </tr>
+
+
+
+                   
+ }
+
+
+
+

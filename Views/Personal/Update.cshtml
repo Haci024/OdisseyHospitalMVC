@@ -1,0 +1,106 @@
+﻿@model Personal
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title">İşçi məlumatlarını yenilə</h4>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Name">Adı</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Name" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Surname">Soyadı</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Surname" type="text" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Age">Yaşı</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Age" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Age" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-10 col-form-label"> Departmenti</label>
+                    <div class="col-sm-10">
+                        <select name="departmentId" class="form-control">
+                            <option></option>
+                            @foreach (Department item in ViewBag.Department)
+                            {
+                                @if (Model.DepartmentId == item.Id)
+                                {
+                                    <option selected value="@item.Id">@item.DepartmentName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.DepartmentName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <span asp-validation-for="@Model.Department.DepartmentName" class="text-danger"></span>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Position"></label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Position" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Position" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Photo"></label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Photo" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Salary"></label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Salary" type="number" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Salary" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i>İşçi məlumatlarını yenilə</button>
+            <a asp-controller="Personal" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

@@ -1,0 +1,60 @@
+﻿@model Gallery
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title"> Yeni Qalareya yarat</h4>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Title" class="form-control form-control-success" placeholder=" Galareya başlığı">
+
+
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Photos" class="form-control form-control-success" placeholder="Qalareya Şəkilləri seçin">
+
+
+                        <span asp-validation-for="@Model.Photos" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Description" type="text" class="form-control form-control-success" placeholder="Qalareya haqqında məlumatı daxil edin">
+
+
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i> Əlavə Et</button>
+            <a asp-controller="Galleries" asp-action="Index" class="btn btn-primary"><i class="mdi mdi-folder-upload"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>

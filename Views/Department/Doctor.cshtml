@@ -1,0 +1,84 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "Doctor";
+}
+<div class="text-center">
+    <h1>Həkimlərin siyahısı</h1>
+</div>
+
+<div class="container">
+    <div class="card">
+
+        <div class="card-header">
+            <a asp-controller="Doctor" asp-action="Create" class="btn btn-success"><i class="ti-user"></i>Həkim əlavə et </a>
+        
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa-chevron-left"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li>
+                        <a asp-controller="Doctor" asp-action="Doctor">
+                            <i class="fa fa-refresh reload-card"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+
+                        <tr>
+
+                            <th>Ad və Soyad</th>
+                            <th>Həkimin fotosu</th>
+                            <th>İşi</th>
+                            <th>Yaş</th>
+                            <th>Fəaliyyətlər</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (Doctor item in Model.Doctor)
+                        {
+
+                            @if (item.DepartmentId == Model.Id)
+                            {
+                                <tr class="table-active">
+                                    <td>@item.Name @item.Surname</td>
+                                    
+                                    <td><img src="~/assets/Image/@item.DoctorImage" style="width:80px;height:80px;border-radius:50%" /></td>
+
+                                    <td data-id="@item.DepartmentId">@item.Work</td>
+                                    <td data-id="@item.DepartmentId">@item.Age</td>
+
+                                    <td>
+                                        <a asp-controller="Doctor" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning"><i class="ti-agenda"></i>Həkim haqqında </a>
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a asp-controller="Doctor" asp-action="Index" class="btn btn-success"><i class="ti-back-left"></i>Geri qayıt</a>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

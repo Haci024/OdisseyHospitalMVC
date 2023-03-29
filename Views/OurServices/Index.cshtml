@@ -1,0 +1,132 @@
+﻿@model List<OurServices>
+    @{
+        ViewData["Title"] = "Index";
+    }
+<div class="container">
+
+    <div class="card">
+        <div class="text-center">
+            <h1> Servislər</h1>
+        </div>
+
+        <div class="card-header">
+            <a asp-controller="OurServices" asp-action="Create" class="btn btn-success"><i class="ti-blackboard"></i>Servis əlavə et</a>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa-chevron-left"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li><a asp-controller="OurServices" asp-action="Index"><i class="fa fa-refresh reload-card"></i></a></li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <form id="formSearch" method="post">
+                    <div id="SearchBox">
+                        <div class="input-group mb-4">
+                            <input type="search" id="ServiceName" name="ServiceName" placeholder="Servisin adı..." aria-describedby="button-addon5" class="form-control">
+                            <div class="input-group-append">
+                                <button type="submit" id="submitsearch" value="Search" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th> Şəkil</th>
+                            <th>Servis adı</th>
+                            <th>Status</th>
+                            <th>Fəaliyyətlər</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (OurServices item in Model)
+                        {
+                            <tr class="table-active">
+                                <td>@item.Id</td>
+
+                                <td><img src="~/assets/Image/@item.Image" style="width:80px;height:80px;border-radius:50%" /></td>
+                                <td><h3>@item.ServiceName</h3></td>
+                                <td>
+
+                                    @if (item.Isdeactive)
+                                    {
+                                        <span class="text-danger">Deaktiv</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-success">Aktiv</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Isdeactive)
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-secondary">Activated</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-danger"><i class="ti-trash"></i>Sil</a>
+                                    }
+                                    <a asp-controller="OurServices" asp-action="Update" asp-route-id="@item.Id" class="btn btn-success"><i class="ti-reload"></i>Yenilə</a>
+                                    <a asp-controller="OurServices" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning"><i class="ti-agenda"></i>Detallar</a>
+                                </td>
+
+
+
+
+
+
+
+                            </tr>
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center">
+
+        <nav>
+            <ul class="pagination">
+                @for (int i = 1; i <= ViewBag.ServiceCount; i++)
+                {
+
+                    if (i == ViewBag.SelectedPage)
+                    {
+                        <li class="page-item disabled">
+                            <a class="page-link" asp-controller="OurServices" asp-action="Index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-controller="OurServices" asp-action="Index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </nav>
+    </div>
+</div>
+  
+    @section Scripts{
+        <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    }

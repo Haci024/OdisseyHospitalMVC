@@ -1,0 +1,7 @@
+﻿@model List<Doctor>
+
+@foreach (Doctor item in Model)
+{
+ 
+    <option  value="@item.Id">@item.Name @item.Surname @item.Work</option>
+}

@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hospital Admin </title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4. The starter version of Gradient Able is completely free for personal project." />
+    <meta name="keywords" content="free dashboard template, free admin, free bootstrap template, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="codedthemes">
+    <!-- Favicon icon -->
+    <link rel="icon" href=~/assets/Image/hospital.png  type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.mCustomScrollbar.css">
+</head>
+
+
+<body>
+
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav style="color:aquamarine" class="navbar header-navbar pcoded-header">
+          
+                <div class="navbar-wrapper">
+                  
+                    <div class="navbar-logo" style="color:aqua">
+                        <div><h3><a href="https://instagram.com/odissey_x?igshid=YmMyMTA2M2Y=">
+    Med Hospital
+</a>
+                           
+                            </h3></div>
+                        <a class="mobile-menu" id="mobile-collapse">
+
+                            <i class="ti-menu"></i>
+                        </a>
+
+
+
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+
+                        <ul class="nav-right">
+
+
+                            <li class="user-profile header-notification">
+                                <a>
+
+                                    <span>@User.Identity.Name</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                    <li>
+
+                                        <a asp-controller="Users" asp-action="UserProfile" asp-route-Id="@User.Identity.Name">
+                                            <i class="ti-user"></i> Profile
+                                        </a>
+
+
+                                    </li>
+
+                                    <li>
+                                        <a asp-controller="Account" asp-action="Logout">
+                                            <i class="ti-control-eject"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+
+                          
+                            <ul class="pcoded-item pcoded-left-item">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="active">
+
+                                        <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+
+                                            <span class="pcoded-micon"><i class="ti-home"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Ana Səhifə</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+
+                                    @*<li class=" ">
+                <a asp-controller="HospitalSliderImage" asp-action="Index">
+                    <span class="pcoded-micon"><i class="ti-layout-slider"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Başlıq şəkilləri</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" ">
+                <a asp-controller="HospitalSlider" asp-action="Index">
+                    <span class="pcoded-micon"><i class="ti-layout-slider-alt"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Başlıq</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>*@
+                                    <li class=" ">
+                                        <a asp-controller="Doctor" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-user"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Həkimlər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class=" ">
+                                        <a asp-controller="Department" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-agenda"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Departamentlər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    @*<li class=" ">
+                <a asp-controller="AboutUs" asp-action="Index">
+                    <span class="pcoded-micon"><i class="ti-book"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Bizim haqqımızda </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>*@
+                                    <li class=" ">
+                                        <a asp-controller="Patients" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-wheelchair"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Xəstələr</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    @*<li class=" ">
+                <a asp-controller="HospitalBlogs" asp-action="Index">
+                    <span class="pcoded-micon"><i class="ti-announcement"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Hospital xəbərləri</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>*@
+                                    <li class=" ">
+                                        <a asp-controller="Illnesses" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-joomla"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Xəstəliklər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-link" asp-controller="BloodBank" asp-action="Index">
+
+                                            <span class="pcoded-micon"><i class="ti-paint-bucket"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Qan Bankı</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="input-group-success">
+                                        <a asp-controller="OurServices" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-truck"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main"> Xidmətlər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class=" ">
+                                        <a asp-controller="Personal" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-hand-open"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">İşçilər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a asp-controller="Rooms" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-home"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Otaqlar</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a asp-controller="Equipments" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-cut"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Alətlər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    @*<li class=" ">
+                                        <a asp-controller="Galleries" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-gallery"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Qalareya</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>*@
+                                    <li class="">
+                                        <a asp-controller="Email" asp-action="Send">
+                                            <span class="pcoded-micon"><i class="ti-email"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Mesaj göndər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a asp-controller="Users" asp-action="Index">
+                                            <span class="pcoded-micon"><i class="ti-user"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">İstifadəçilər</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a asp-controller="Account" asp-action="Logout">
+                                            <span class="pcoded-micon"><i class="ti-share"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Hesabdan çıxış</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li class="success-breadcrumb">
+                                        <a asp-controller="Account" asp-action="Login">
+                                            <span class="pcoded-micon"><i class="ti-user"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Hesaba giriş</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        
+                     
+
+
+
+                        </div>
+                    </nav>
+
+                 
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+
+                    <script type="text/javascript" src="~/assets/js/jquery/jquery.min.js"></script>
+                    <script type="text/javascript" src="~/assets/js/jquery-ui/jquery-ui.min.js"></script>
+                    <script type="text/javascript" src="~/assets/js/popper.js/popper.min.js"></script>
+                    <script type="text/javascript" src="~/assets/js/bootstrap/js/bootstrap.min.js"></script>
+                    <!-- jquery slimscroll js -->
+                    <script type="text/javascript" src="~/assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+                    <!-- modernizr js -->
+                    <script type="text/javascript" src="~/assets/js/modernizr/modernizr.js"></script>
+                    <!-- am chart -->
+                    <script src="~/assets/pages/widget/amchart/amcharts.min.js"></script>
+                    <script src="~/assets/pages/widget/amchart/serial.min.js"></script>
+                    <!-- Chart js -->
+                    <script type="text/javascript" src="~/assets/js/chart.js/Chart.js"></script>
+                    <!-- Todo js -->
+                    <script type="text/javascript " src="~/assets/pages/todo/todo.js "></script>
+                    <!-- Custom js -->
+                    <script type="text/javascript" src="~/assets/pages/dashboard/custom-dashboard.min.js"></script>
+                    <script type="text/javascript" src="~/assets/js/script.js"></script>
+                    <script type="text/javascript " src="~/assets/js/SmoothScroll.js"></script>
+                    <script src="~/assets/js/pcoded.min.js"></script>
+                    <script src="~/assets/js/vartical-demo.js"></script>
+                    <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+                    @RenderSection("Scripts", false)
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

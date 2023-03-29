@@ -1,0 +1,191 @@
+﻿@model Patients
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title"> Yeni Pasient</h4>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Name" class="form-control form-control-success" placeholder="Ad...">
+
+
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Surname" class="form-control form-control-success" placeholder="Soyad...">
+
+
+                        <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Age" class="form-control form-control-success" placeholder="Yaşı">
+
+
+                        <span asp-validation-for="@Model.Age" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-12">
+                        <label class="col-form-label" asp-for="@Model.ApplyDate">Qeydiyyat tarixi</label>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.ApplyDate" class="form-control form-control-success" placeholder="Qeydiyyat tarixi...">
+
+
+                        <span asp-validation-for="@Model.ApplyDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-12">
+
+                    </div>
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Email" type="email" class="form-control form-control-success" placeholder="Elektron ünvanı...">
+
+
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Disease" class="form-control form-control-success" placeholder="Xəstəliyi">
+
+
+                        <span asp-validation-for="@Model.Disease" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-12">
+                        <label class="col-form-label" asp-for="@Model.Photo">Xəstənin fotosu</label>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Photo" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.HomeAdress" class="form-control form-control-success" placeholder="Ev ünvanı...">
+
+
+                        <span asp-validation-for="@Model.HomeAdress" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success ">
+                    <div class="col-sm-6">
+                        <label class="col-form-label">Departament seçin</label>
+                    </div>
+                    <select name="departmentId" class="form-control" id="departmentId" >
+
+                        @foreach (Department item in ViewBag.Department)
+                        {
+                            <option value="@item.Id">@item.DepartmentName</option>
+                        }
+
+                    </select>
+                </div>
+
+                <div class="form-group has-success row ">
+                    <div class="col-sm-2">
+                        <label class="col-form-label">Həkimi seçin</label>
+                    </div>
+
+                    <select name="DoctorId" class="form-control" id="DoctorId" multiple>
+
+                        @foreach (Doctor item in ViewBag.Doctor)
+                        {
+                            <option value="@item.Id">@item.Name @item.Surname @item.Work</option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i>Xəstə əlavə et</button>
+            <a asp-controller="Patients" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        if ($("#ImPatient").prop("checked")) {
+            $("#RoomNum").addClass("d-none")
+            $("#roomId").removeClass("d-none")
+        }
+        else {
+            $("#RoomNum").removeClass("d-none")
+            $("#roomId").addClass("d-none")
+        }
+        $(document).on('change', '#ImPatient', function () {
+            if ($("#ImPatient").prop("checked")) {
+                $("#RoomNum").addClass("d-none")
+                $("#roomId").removeClass("d-none")
+            }
+            else {
+                $("#RoomNum").removeClass("d-none")
+                $("#roomId").addClass("d-none")
+            }
+        })
+    </script>
+    <script>
+        $(document).on('change', '#departmentId', function () {
+
+            $.ajax({
+                url: "/Patients/LoadDoctorCategories/",
+                type: "GET",
+                data: {
+                    "mainId": $("#departmentId").val()
+                },
+                success: function (response) {
+                    $("#DoctorId").empty()
+                    $("#DoctorId").append(response)
+                }
+
+            });
+        })
+    </script>
+    <script>
+        $(document).on('change', '#departmentId', function () {
+
+            $.ajax({
+                url: "/Patients/LoadDiseasesCategories/",
+                type: "GET",
+                data: {
+                    "mainId": $("#departmentId").val()
+                },
+                success: function (response) {
+                    $("#IllnessId").empty()
+                    $("#IllnessId").append(response)
+                }
+
+            });
+
+
+        })
+    </script>
+}

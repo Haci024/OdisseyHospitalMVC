@@ -1,0 +1,54 @@
+﻿@model OurServices
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="text-center">
+            <h1> Servis haqqında</h1>
+        </div>
+        <div class="card-border-danger">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="~/assets/Image/@Model.Image" style="width:500px;height:400px;border-radius:20px" />
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.ServiceName">Servisin adı</label>
+                            <input asp-for="@Model.ServiceName" class="form-control">
+                            <span asp-validation-for="@Model.ServiceName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Description">Servis haqqında</label>
+                            <textarea asp-for="@Model.Description" class="form-control"></textarea>
+                            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="text-center">
+
+                    <a asp-controller="OurServices" asp-action="Index" class="btn btn-success"><i class="ti-back-left"></i>Geri Qayıt</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿@model HospitalSliderImage
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Yenilə</h1>
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <img src="~/assets/Image/@Model.Image" style="width:500px;height:200px;border-radius:20%" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Photo"></label>
+            <input asp-for="@Model.Photo" class="form-control">
+            <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+        </div>
+
+
+           <div class="text-center">
+
+                      
+               <button type="submit" class="btn btn-primary"><i class="ti-reload"></i>Yenilə</button>
+                 
+               <a asp-controller="HospitalSliderImage" asp-action="Index" class="btn btn-success"><i class="ti-back-left"></i>Geri qayıt</a>
+
+          </div>
+   
+    </form>
+
+</div>
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

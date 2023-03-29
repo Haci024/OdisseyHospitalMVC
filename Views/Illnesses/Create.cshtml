@@ -1,0 +1,59 @@
+﻿@model Illnesses
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title">Xəstəlik əlavə et</h4>
+                </div>
+                <div class="form-group has-success row">
+                  
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Ilness" placeholder="Xəstəlik adını yazın..." class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Ilness" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                  
+                    <div class="col-sm-10">
+                        <textarea asp-for="@Model.HealthyMethod" type="text" placeholder="Xəstəlik müalicə methodunu yazın..." class="form-control form-control-success"></textarea>
+                        <span asp-validation-for="@Model.HealthyMethod" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-10 col-form-label"> Departament seçin</label>
+                    <div class="col-sm-10">
+                        <select name="departmentId" class="form-control">
+                            <option></option>
+                            @foreach (Department item in ViewBag.Department)
+                            {
+                              
+                                
+                        <option selected value="@item.Id">@item.DepartmentName</option>
+                                
+
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i>Əlavə et</button>
+            <a asp-controller="Illnesses" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

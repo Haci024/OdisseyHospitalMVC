@@ -1,0 +1,59 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "Update";
+}
+<h1 class="text-center">
+    Department Məlumatlarını yenilə</h1>
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+               
+
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Photo">Foto</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Photo" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.DepartmentName">Departamentin adı</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.DepartmentName" type="text" class="form-control form-control-success" placeholder="Departamentin adı...">
+                        <span asp-validation-for="@Model.DepartmentName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-10">
+                        <label class="col-form-label" asp-for="@Model.Description">Departament haqqında</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <textarea asp-for="@Model.Description" type="text" placeholder="Departament Haqqında..." class="form-control form-control-success"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i> Yenilə</button>
+            <a asp-controller="Department" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}

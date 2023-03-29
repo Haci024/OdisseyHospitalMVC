@@ -1,0 +1,204 @@
+﻿@model Doctor
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title">Həkim haqqında</h4>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-6">
+                        <img src="~/assets/Image/@Model.DoctorImage" style="width:500px;height:600px;border-radius:10%;object-fit:cover" />
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Name">Həkimin adı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Name" class="form-control form-control-success" placeholder="Həkimin adı">
+
+
+                                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Surname">Həkimin Soyadı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Surname" class="form-control form-control-success" placeholder="Həkimin Soyadı">
+
+
+                                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Age">Həkimin yaşı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Age" class="form-control form-control-success" placeholder="Həkimin yaşı">
+
+
+                                <span asp-validation-for="@Model.Age" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Education">Həkimin Təhsili</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <textarea asp-for="@Model.Education" type="text" class="form-control form-control-success" placeholder="Həkimin Təhsili"></textarea>
+
+
+                                <span asp-validation-for="@Model.Education" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Description">Departamentin adı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <textarea asp-for="@Model.Description" class="form-control form-control-success" placeholder="Həkimin haqqinda"></textarea>
+
+
+                                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Salary">Həkimin maaşı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Salary" type="number" class="form-control form-control-success" placeholder="Həkimin maaşı">
+
+
+                                <span asp-validation-for="@Model.Salary" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Salary">Həkimin xəstələrinin sayı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Reports.Count" type="number" class="form-control form-control-success" placeholder="Həkimin maaşı">
+
+
+                                <span asp-validation-for="@Model.Salary" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Work">Həkimin İşi</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Work" class="form-control form-control-success" placeholder="Həkimin İşi">
+
+
+                                <span asp-validation-for="@Model.Work" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.WorkNumber">İş nömrəsi</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <input asp-for="@Model.WorkNumber" class="form-control form-control-success" placeholder="İş nömrəsi">
+                                <span asp-validation-for="@Model.WorkNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.BloodGroup">Qan qrupu</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.BloodGroup" class="form-control form-control-success" placeholder="Qan qrupu">
+
+
+                                <span asp-validation-for="@Model.BloodGroup" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Email">Elektron ünvanı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Email" type="email" class="form-control form-control-success" placeholder="Elektron ünvanı">
+
+
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Department.DepartmentName">Departamentin adı</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Department.DepartmentName" type="text" class="form-control form-control-success" placeholder="Cinsi">
+
+
+                                <span asp-validation-for="@Model.Department.DepartmentName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.Type">Cinsi</label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.Type" type="text" class="form-control form-control-success" placeholder="Cinsi">
+
+
+                                <span asp-validation-for="@Model.Type" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success row">
+                            <div class="col-sm-10">
+                                <label class="col-form-label" asp-for="@Model.HomeAdress">Ev adresi </label>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <input asp-for="@Model.HomeAdress" type="text" class="form-control form-control-success" placeholder="Ev ünvanı">
+
+
+                                <span asp-validation-for="@Model.HomeAdress" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="text-center">
+
+                <a asp-controller="Doctor" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

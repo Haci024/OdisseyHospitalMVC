@@ -1,0 +1,21 @@
+﻿@model HospitalSliderImage
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="container">
+    <h1>Hospital başlıq şəkili</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <img src="~/assets/Image/@Model.Image" style="width:1000px;height:400px;border-radius:50px" />
+        </div>
+    </form>
+    <div class="text-center">
+        <a asp-controller="HospitalSliderImage" asp-action="Index" class="btn btn-outline-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

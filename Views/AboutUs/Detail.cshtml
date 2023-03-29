@@ -1,0 +1,51 @@
+﻿@model AboutUs
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="container">
+    <div class="card">
+        <h1 class="text-center"> Bizim haqqımızda</h1>
+        <div class="card-border-danger">
+            <form method="post" enctype="multipart/form-data">
+                <div class="text-center">
+                    <div class="form-group">
+                        <img src="~/assets/Image/@Model.Image" style="width:500px;height:500px;object-fit:cover;border-radius:10%" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Title">Başlıq</label>
+                    <textarea asp-for="@Model.Title" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Description">Mətn</label>
+                    <textarea asp-for="@Model.Description" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<div class="text-center">
+
+    <a asp-controller="AboutUs" asp-action="Index" class="btn btn-success"><i class="ti-back-left"></i>Geri qayıt</a>
+</div>
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Title'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+

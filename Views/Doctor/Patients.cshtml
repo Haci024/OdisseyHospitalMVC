@@ -1,0 +1,95 @@
+﻿@model Doctor
+@{
+    ViewData["Title"] = "Patients";
+}
+
+<div class="container">
+    <div class="text-center">
+        <h1>Həkimin pasientləri siyahısı</h1>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">
+
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa-chevron-left"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li><i class="fa fa-refresh reload-card"></i></li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+
+                        <tr>
+
+                            <th>Ad və Soyad</th>
+                            <th>Pasientin fotosu</th>
+                            <th>Qeydiyyat tarixi</th>
+                            <th>Fəaliyyətlər</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Patients item in ViewBag.Patients)
+                        {
+                            @if (item.Reports.Any(x=>x.DoctorId == Model.Id))
+                            {
+                        <tr class="table-active">
+                            <td>@item.Name @item.Surname</td>
+
+                            <td><img src="~/assets/Image/@item.Image" style="width:80px;height:80px;border-radius:50%" /></td>
+                            <td>   @item.ApplyDate.ToString("dd.MM.yyyy")</td>
+                            <td>
+                                <a asp-controller="Patients" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning"><i class="ti-agenda"></i>Haqqında</a>
+                            </td>
+                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-center">
+            <a asp-controller="Doctor" asp-action="Index" class="btn btn-success"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="d-flex justify-content-center">
+
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.PersonalCount; i++)
+            {
+
+                if (i == ViewBag.SelectedPage)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" asp-controller="Personal" asp-action="Index" asp-route-page="@i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Personal" asp-action="Index" asp-route-page="@i">@i</a>
+                    </li>
+                }
+            }
+
+        </ul>
+    </nav>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}

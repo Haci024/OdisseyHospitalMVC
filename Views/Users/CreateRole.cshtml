@@ -1,0 +1,84 @@
+﻿@model RegisterVM
+
+@{
+    ViewData["Title"] = "CreateRole";
+}
+
+<div class="container">
+   
+    <form method="post" enctype="multipart/form-data">
+       
+        <div class="card">
+            <div class="text-center">
+                <h4 class="sub-title"> Istifadəçi yarat</h4>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+            
+            <div class="card-block">
+               
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Name" placeholder="Daxil olan istifadəçinin adı..." class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Surname" placeholder="Daxil olan istifadəçinin soyadı..." class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Username" placeholder="İstifadəçi  adı..." class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Email" type="email" placeholder=" İstifadəçinin elektron ünvanı..." class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.Password" type="password" class="form-control form-control-success" placeholder="Şifrə  yarat...">
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-10">
+                        <input asp-for="@Model.CheckPassword" type="password" placeholder="Şifrə təkrarı..." class="form-control form-control-success">
+                        <span asp-validation-for="@Model.CheckPassword" class="text-danger"></span>
+                    </div>
+                </div>
+             
+
+                @*<div class="form-group">
+                    <div class="col-sm-10">
+                        <label for="exampleFormControlSelect1">Rol Yarat</label>
+                        <select class="form-control" name="newRole">
+                            <option></option>
+                            @foreach (IdentityRole role in ViewBag.Roles)
+                            {
+                                <option selected value="@role">@role</option>
+                            }
+                        </select>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" value="Create" class="btn btn-success"><i class="icofont icofont-check-circled"></i> Yarat</button>
+            <a asp-controller="Users" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>

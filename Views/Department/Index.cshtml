@@ -1,0 +1,116 @@
+﻿@model List<Department>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="text-center">
+        <h1>Departmentlər</h1>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">
+            <a asp-controller="Department" asp-action="Create" class="btn btn-success"><i class="ti-pencil-alt"></i>Departament əlavə et</a>
+
+
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa-chevron-left"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li>
+                        <a asp-controller="Department" asp-action="Index">
+                            <i class="fa fa-refresh reload-card"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+       
+
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+
+                        <tr>
+
+
+                            <th>Şəkil</th>
+                            <th>Departamentin adı</th>
+                            <th>Status</th>
+                            <th>Fəaliyyətlər</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Department item in Model)
+                        {
+                            <tr class="table-active">
+
+
+                                <td><img src="~/assets/Image/@item.Image" style="width:80px;height:80px;border-radius:50%" /></td>
+                                <td><h3>@item.DepartmentName</h3></td>
+                                <td>
+
+                                    @if (item.IsDeactive)
+                                    {
+                                        <span class="text-danger">Deaktiv</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-success">Aktiv</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsDeactive)
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-secondary">Activated</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-danger"><i class="ti-trash"></i>Sil</a>
+                                    }
+                                    <a asp-controller="Department" asp-action="Update" asp-route-id="@item.Id" class="btn btn-success"><i class="ti-reload"></i>Yenilə</a>
+                                    <a asp-controller="Department" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning"><i class="ti-agenda"></i>Detallar</a>
+                                    <a asp-controller="Department" asp-action="Doctor" asp-route-id="@item.Id" class="btn btn-facebook"><i class="ti-user"></i>Həkimlər</a>
+                                    <a asp-controller="Department" asp-action="Personal" asp-route-id="@item.Id" class="btn btn-primary"><i class="ti-user"></i>İşçilər</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="d-flex justify-content-center">
+
+        <nav>
+            <ul class="pagination">
+                @for (int i = 1; i <= ViewBag.DepartmentCount; i++)
+                {
+
+                    if (i == ViewBag.SelectedPage)
+                    {
+                        <li class="page-item disabled">
+                            <a class="page-link" asp-controller="Department" asp-action="Index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-controller="Department" asp-action="Index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </nav>
+    </div>
+    @section Scripts{
+        <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    }

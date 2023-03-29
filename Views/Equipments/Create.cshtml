@@ -1,0 +1,78 @@
+﻿@model Equipments
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4 class="sub-title"> Yeni Alət əlavə et</h4>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Name" class="form-control form-control-success" placeholder="Alətin adı">
+
+
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.Price" type="number" class="form-control form-control-success" placeholder="Alətin qiyməti">
+
+
+                        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <input asp-for="@Model.EquipmentCount" class="form-control form-control-success" placeholder="Alətin sayı">
+
+
+                        <span asp-validation-for="@Model.EquipmentCount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+
+                    <div class="col-sm-12">
+
+                        <textarea asp-for="@Model.Description" class="form-control form-control-success" placeholder="Alətin haqqında"></textarea>
+
+
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group has-success row">
+                    <div class="col-sm-12">
+                        <label class="col-form-label" asp-for="@Model.Photo">Alətin şəkili</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input asp-for="@Model.Photo" class="form-control form-control-success">
+                        <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="icofont icofont-check-circled"></i>Alət əlavə et</button>
+            <a asp-controller="Equipments" asp-action="Index" class="btn btn-primary"><i class="ti-back-left"></i>Geri qayıt</a>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+}
